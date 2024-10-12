@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Online</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            background-color: #1c1c1c;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #111;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px; /* Ajusta aquí el tamaño del texto */
+            font-weight: bold;
+            color: #ffd700;
+        }
+        #userId {
+            color: white; /* Color del ID de usuario */
+            margin-top: 10px; /* Espacio superior para el ID */
+            font-size: 12px; /* Ajusta el tamaño del texto del ID */
+        }
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            border-bottom: 3px solid #ffd700;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            background-color: #444;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+            font-size: 16px; /* Ajusta el tamaño del texto del menú */
+        }
+        nav a:hover {
+            background-color: #ffd700;
+            color: black;
+        }
+        .container {
+            padding: 5px;
+        }
+        .game {
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .game h2 {
+            font-size: 22px; /* Ajusta el tamaño de los títulos */
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        .game img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+        .game p {
+            font-size: 16px; /* Ajusta el tamaño del texto de los párrafos */
+            margin: 20px 0;
+        }
+        .game button {
+            padding: 15px 30px;
+            background-color: #ffd700;
+            color: black;
+            font-size: 18px; /* Ajusta el tamaño del texto de los botones */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .game button:hover {
+            background-color: #ffc107;
+        }
+        footer {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Casino Online
+        <div id="userId"></div> <!-- Aquí se mostrará el ID del usuario -->
+    </header>
+
+    <nav>
+        <a href="#" onclick="navigate('inicio.html')">Casino</a>
+        <a href="#" onclick="navigate('tragamonedas.html')">Depositar</a>
+        <a href="#" onclick="navigate('ruleta.html')">Retirar</a>
+    </nav>
+
+    <div class="container">
+        <section class="game">
+            <h2>Tragamonedas</h2>
+            <img src="https://play-lh.googleusercontent.com/InUopDgX8KBbuMACPON_5ABVaSUnyx8evt5XtpB3aYbxnp_VcsAs1NIyM4EcvdYYnQ=w526-h296-rw" alt="Tragamonedas">
+            <p>¡Juega a las tragamonedas y gana en grande!</p>
+            <button onclick="navigate('tragamonedas.html')">Girar</button>
+        </section>
+
+        <section class="game">
+            <h2>Ruleta</h2>
+            <img src="https://img.freepik.com/foto-gratis/vista-juego-ruleta-casino_23-2151007833.jpg" alt="Ruleta">
+            <p>¡Prueba tu suerte en la ruleta!</p>
+            <button onclick="navigate('ruleta.html')">Jugar</button>
+        </section>
+
+        <section class="game">
+            <h2>Blackjack</h2>
+            <img src="https://images.prismic.io/desplaines-rushstreetgaming/1c8e0aa3-6b2d-4f01-a49e-15b556dc0882_03253_March-Blackjack-Blowout-Email_Image_1200x650_v1_210223.jpg" alt="Blackjack">
+            <p>¡Compite en el blackjack contra la casa!</p>
+            <button onclick="navigate('blackjack.html')">Jugar</button>
+        </section>
+    </div>
+
+    <footer>
+        © 2024 Casino Online. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        function navigate(page) {
+            window.location.href = page;
+        }
+
+        // Función para generar un ID de usuario
+        function generateUserId() {
+            const userId = 'user-' + Math.random().toString(36).substr(2, 9); // Genera un ID único
+            localStorage.setItem('userId', userId); // Guarda el ID en almacenamiento local
+            return userId;
+        }
+
+        // Función para mostrar el ID de usuario en la cabecera
+        function displayUserId() {
+            const storedUserId = localStorage.getItem('userId');
+            const userIdDisplay = document.getElementById('userId');
+            userIdDisplay.textContent = storedUserId ? `ID: ${storedUserId}` : `ID: ${generateUserId()}`;
+        }
+
+        // Llama a la función para mostrar el ID de usuario cuando se carga la página
+        window.onload = displayUserId;
+    </script>
+
+</body>
+</html>
