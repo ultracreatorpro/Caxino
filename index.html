@@ -16,14 +16,23 @@
             background-color: #111;
             padding: 15px;
             text-align: center;
-            font-size: 24px; /* Ajusta aquí el tamaño del texto */
+            font-size: 24px;
             font-weight: bold;
             color: #ffd700;
+         }
+        .header-info {
+            font-size: 14px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
         }
         #userId {
-            color: white; /* Color del ID de usuario */
-            margin-top: 10px; /* Espacio superior para el ID */
-            font-size: 12px; /* Ajusta el tamaño del texto del ID */
+            margin-right: 20px;
+        }
+        #balance {
+            font-size: 14px;
+            color: #ffd700;
         }
         nav {
             background-color: #333;
@@ -39,24 +48,24 @@
             background-color: #444;
             border-radius: 30px;
             transition: background-color 0.3s ease;
-            font-size: 16px; /* Ajusta el tamaño del texto del menú */
+            font-size: 16px;
         }
         nav a:hover {
             background-color: #ffd700;
             color: black;
         }
         .container {
-            padding: 5px;
+            padding: 10px;
         }
         .game {
             background-color: #2d2d2d;
-            padding: 15px;
+            padding: 20px;
             border-radius: 15px;
-            margin: 30px 0;
+            margin: 15px 0;
             text-align: center;
         }
         .game h2 {
-            font-size: 22px; /* Ajusta el tamaño de los títulos */
+            font-size: 22px;
             margin-bottom: 20px;
             color: #ffd700;
         }
@@ -66,21 +75,32 @@
             border-radius: 10px;
         }
         .game p {
-            font-size: 16px; /* Ajusta el tamaño del texto de los párrafos */
+            font-size: 16px;
             margin: 20px 0;
         }
         .game button {
             padding: 15px 30px;
-            background-color: #ffd700;
-            color: black;
-            font-size: 18px; /* Ajusta el tamaño del texto de los botones */
+            font-size: 18px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
+            margin: 5px;
+        }
+        .primary-button {
+            background-color: #ffd700;
+            color: black;
             transition: background-color 0.3s ease;
         }
-        .game button:hover {
+        .primary-button:hover {
             background-color: #ffc107;
+        }
+        .secondary-button {
+            background-color: #28a745;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .secondary-button:hover {
+            background-color: #218838;
         }
         footer {
             background-color: #111;
@@ -89,41 +109,81 @@
             font-size: 16px;
             color: #888;
         }
+        /* Estilos para el contenedor de mensajes de depósito */
+        #deposit-notifications {
+            background-color: #444;
+            padding: 5px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #ffd700;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header>
         Casino Online
-        <div id="userId"></div> <!-- Aquí se mostrará el ID del usuario -->
+        <div class="header-info">
+            <div id="userId"></div>
+            <div id="balance">$0.00</div>
+        </div>
     </header>
 
     <nav>
-        <a href="#" onclick="navigate('inicio.html')">Casino</a>
-        <a href="#" onclick="navigate('tragamonedas.html')">Depositar</a>
-        <a href="#" onclick="navigate('ruleta.html')">Retirar</a>
+        <a href="#"('inicio.html')">Casino</a>
+        <a href="https://tu-enlace-de-deposito.com" target="_blank">Depositar</a>
+        <a href="https://tu-enlace-de-retiro.com" target="_blank">Retirar</a>
     </nav>
 
-    <div class="container">
-        <section class="game">
-            <h2>Tragamonedas</h2>
-            <img src="https://play-lh.googleusercontent.com/InUopDgX8KBbuMACPON_5ABVaSUnyx8evt5XtpB3aYbxnp_VcsAs1NIyM4EcvdYYnQ=w526-h296-rw" alt="Tragamonedas">
-            <p>¡Juega a las tragamonedas y gana en grande!</p>
-            <button onclick="navigate('tragamonedas.html')">Girar</button>
-        </section>
-
-        <section class="game">
-            <h2>Ruleta</h2>
-            <img src="https://img.freepik.com/foto-gratis/vista-juego-ruleta-casino_23-2151007833.jpg" alt="Ruleta">
-            <p>¡Prueba tu suerte en la ruleta!</p>
-            <button onclick="navigate('ruleta.html')">Jugar</button>
-        </section>
+    <!-- Contenedor de notificaciones de depósito -->
+    <div id="deposit-notifications">
+        Usuario gw1k***** acaba de depositar $20
+    </div>
 
         <section class="game">
             <h2>Blackjack</h2>
-            <img src="https://images.prismic.io/desplaines-rushstreetgaming/1c8e0aa3-6b2d-4f01-a49e-15b556dc0882_03253_March-Blackjack-Blowout-Email_Image_1200x650_v1_210223.jpg" alt="Blackjack">
+            <img src="https://assets.funnygames.org/9/114579/100326/1200x630/las-vegas-blackjack.webp" alt="Blackjack">
             <p>¡Compite en el blackjack contra la casa!</p>
-            <button onclick="navigate('blackjack.html')">Jugar</button>
+            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/las-vegas-blackjack.html'">Probar</button>
+            <button class="secondary-button" onclick="window.location.href='https://tu-enlace.com/probar-blackjack'">Apostar</button>
+        </section>
+    </div>
+
+        <section class="game">
+            <h2>Domino</h2>
+            <img src="https://i.ibb.co/JcLg4Gw/IMG-20241014-021344-846.jpg" alt="Ruleta">
+            <p>¡Prueba tu suerte con estrategias e inteligencia!</p>
+            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/domino-battle.html'">Probar</button>
+            <button class="secondary-button" onclick="window.location.href='https://tu-enlace.com/probar-ruleta'">Apostar</button>
+        </section>
+
+        <section class="game">
+            <h2>Expert Goalkeeper</h2>
+            <img src="https://s.cafebazaar.ir/images/upload/screenshot/expert.goalkeeper-3138756c-7354-48e5-a891-ea2b8d73a824.jpeg?x-img=v1/resize,h_600,lossless_false/optimize" alt="Blackjack">
+            <p>¡Detén cuantos balones seas capaz!</p>
+            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/goalkeeperchallenge.html'">Probar</button>
+            <button class="secondary-button" onclick="window.location.href='https://tu-enlace.com/probar-blackjack'">Apostar</button>
+        </section>
+    </div>
+
+        <section class="game">
+            <h2>Jewel crush</h2>
+            <img src="https://i.ibb.co/BCRDPww/IMG-20241012-214827-200.jpg" alt="Blackjack">
+            <p>¡Intenta acumular la mayor cantidad de monedas!</p>
+            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/jewel-academy.html'">Probar</button>
+            <button class="secondary-button" onclick="window.location.href='https://tu-enlace.com/probar-blackjack'">Apostar</button>
+        </section>
+    </div>
+
+        <section class="game">
+            <h2>Busca minas</h2>
+            <img src="https://i.ibb.co/NrGm8vX/IMG-20241014-014454-023.jpg" alt="Blackjack">
+            <p>¡Camina con cuidado para no explotar con una mina!</p>
+            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/buscaminas.html'">Probar</button>
+            <button class="secondary-button" onclick="window.location.href='https://tu-enlace.com/probar-blackjack'">Apostar</button>
         </section>
     </div>
 
@@ -136,22 +196,55 @@
             window.location.href = page;
         }
 
-        // Función para generar un ID de usuario
         function generateUserId() {
-            const userId = 'user-' + Math.random().toString(36).substr(2, 9); // Genera un ID único
-            localStorage.setItem('userId', userId); // Guarda el ID en almacenamiento local
+            const userId = 'user-' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('userId', userId);
             return userId;
         }
 
-        // Función para mostrar el ID de usuario en la cabecera
         function displayUserId() {
             const storedUserId = localStorage.getItem('userId');
             const userIdDisplay = document.getElementById('userId');
             userIdDisplay.textContent = storedUserId ? `ID: ${storedUserId}` : `ID: ${generateUserId()}`;
         }
 
-        // Llama a la función para mostrar el ID de usuario cuando se carga la página
-        window.onload = displayUserId;
+        // Función para actualizar los mensajes de depósito cada 2 segundos
+        function updateDepositNotifications() {
+            const messages = [
+                'Usuario j4f3***** acaba de depositar $20',
+                'Usuario xeu4***** acaba de retirar $55',
+                'Usuario c6kd***** acaba de depositar $38',
+                'Usuario mkd4***** acaba de depositar $100',
+                'Usuario vda8***** acaba de retirar $80',
+                'Usuario k6p9***** acaba de depositar $225',
+                'Usuario v2mB***** acaba de retirar $18',
+                'Usuario s9ñ3***** acaba de depositar $50',
+                'Usuario l4e8***** acaba de depositar $35',
+                'Usuario j5b7***** acaba de retirar $15',
+                'Usuario a061***** acaba de depositar $40',
+                'Usuario g6s7***** acaba de retirar $250',
+                'Usuario c7w4***** acaba de depositar $100',
+                'Usuario 6jt5***** acaba de depositar $70',
+                'Usuario a0p2***** acaba de retirar $35',
+                'Usuario u2s3***** acaba de depositar $110',
+                'Usuario i4h4***** acaba de retirar $10',
+                'Usuario 8dr7***** acaba de depositar $240',
+
+                // Agrega más mensajes si es necesario
+            ];
+            let messageIndex = 0;
+            const notificationElement = document.getElementById('deposit-notifications');
+
+            setInterval(() => {
+                notificationElement.textContent = messages[messageIndex];
+                messageIndex = (messageIndex + 1) % messages.length; // Cicla los mensajes
+            }, 2000); // Cambia cada 2 segundos
+        }
+
+        window.onload = function() {
+            displayUserId();
+            updateDepositNotifications();
+        };
     </script>
 
 </body>
