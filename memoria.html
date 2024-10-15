@@ -68,18 +68,35 @@
             margin-bottom: 10px;
         }
 
-        .restart-btn {
-            background-color: #007BFF;
+        .restart-btn, .bet-btn {
             color: white;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
             font-size: 18px;
             border-radius: 5px;
+            margin: 5px;
+        }
+
+        .restart-btn {
+            background-color: #007BFF;
         }
 
         .restart-btn:hover {
             background-color: #0056b3;
+        }
+
+        .bet-btn {
+            background-color: #28a745;
+        }
+
+        .bet-btn:hover {
+            background-color: #218838;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
         }
     </style>
 </head>
@@ -95,7 +112,10 @@
 
     <div class="controls">
         <div class="timer" id="timer">Tiempo: 01:00</div>
-        <button class="restart-btn" id="restartBtn">Reiniciar</button>
+        <div class="btn-group">
+            <button class="restart-btn" id="restartBtn">Reiniciar</button>
+            <button class="bet-btn" id="betBtn">Apostar</button>
+        </div>
     </div>
 
     <script>
@@ -113,11 +133,12 @@
         let gameBoard = document.getElementById('gameBoard');
         let timerElement = document.getElementById('timer');
         let restartBtn = document.getElementById('restartBtn');
+        let betBtn = document.getElementById('betBtn');
 
         let hasFlippedCard = false;
         let lockBoard = false;
         let firstCard, secondCard;
-        let timeLeft = 60; // Tiempo inicial (60 segundos)
+        let timeLeft = 60;
         let timerInterval;
 
         function startGame() {
@@ -126,28 +147,20 @@
             startTimer();
         }
 
-        // Generar y mezclar las cartas
         function generateCards() {
-            gameBoard.innerHTML = ''; // Limpiar el tablero
-
-            // Duplicamos las cartas para hacer las parejas
+            gameBoard.innerHTML = '';
             let cards = [...cardsArray, ...cardsArray];
-
-            // Mezclamos las cartas
             cards.sort(() => 0.5 - Math.random());
-
-            // Creamos las cartas en el tablero
             cards.forEach((card) => {
                 const cardElement = document.createElement('div');
                 cardElement.classList.add('card');
                 cardElement.dataset.name = card.name;
-                cardElement.innerHTML = "?"; // Se muestra el dorso al principio
+                cardElement.innerHTML = "?";
                 cardElement.addEventListener('click', flipCard);
                 gameBoard.appendChild(cardElement);
             });
         }
 
-        // Función para girar una carta
         function flipCard() {
             if (lockBoard || this.classList.contains('flipped')) return;
 
@@ -166,7 +179,6 @@
             checkForMatch();
         }
 
-        // Verificar si las cartas coinciden
         function checkForMatch() {
             if (firstCard.dataset.name === secondCard.dataset.name) {
                 disableCards();
@@ -175,7 +187,6 @@
             }
         }
 
-        // Deshabilitar las cartas si coinciden
         function disableCards() {
             setTimeout(() => {
                 firstCard.classList.add('hidden');
@@ -184,7 +195,6 @@
             }, 1000);
         }
 
-        // Voltear las cartas si no coinciden
         function unflipCards() {
             setTimeout(() => {
                 firstCard.classList.remove('flipped');
@@ -195,13 +205,11 @@
             }, 1000);
         }
 
-        // Reiniciar el estado del tablero
         function resetBoard() {
             [hasFlippedCard, lockBoard] = [false, false];
             [firstCard, secondCard] = [null, null];
         }
 
-        // Iniciar el temporizador
         function startTimer() {
             clearInterval(timerInterval);
             timeLeft = 60;
@@ -218,14 +226,12 @@
             }, 1000);
         }
 
-        // Actualizar la pantalla del temporizador
         function updateTimerDisplay() {
             let minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             timerElement.textContent = `Tiempo: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         }
 
-        // Mostrar todas las cartas cuando se acaba el tiempo
         function revealAllCards() {
             document.querySelectorAll('.card').forEach(card => {
                 if (!card.classList.contains('flipped')) {
@@ -233,15 +239,15 @@
                     card.innerHTML = cardsArray.find(c => c.name === card.dataset.name).img;
                 }
             });
-
-            // Reiniciar el juego después de 2 segundos
             setTimeout(startGame, 2000);
         }
 
-        // Reiniciar el juego manualmente al hacer clic en el botón
         restartBtn.addEventListener('click', startGame);
+        betBtn.addEventListener('click', () => {
+    window.location.href = 'depositar.html';  // Redirige a la página interna
+            // Aquí podrás agregar la lógica para dirigir a otra sección
+        });
 
-        // Iniciar el juego al cargar la página
         startGame();
     </script>
 
