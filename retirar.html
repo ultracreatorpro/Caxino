@@ -133,7 +133,7 @@
         </div>
         
         <!-- Botón Volver al menú -->
-        <a href="depositar.html">Deposita para apostar</a>
+        <button class="menu-button" onclick="goToMenu()">Volver al menú</button>
     </div>
 
     <div class="overlay" id="overlay"></div>
@@ -150,6 +150,7 @@
                 displaySavedAddress();
                 openPopup();
             } else {
+                alert("Por favor, introduce una dirección válida.");
             }
         }
 
@@ -169,6 +170,10 @@
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
+        }
+
+        function goToMenu() {
+            window.location.href = 'depositar.html'; // Cambia esto al nombre de tu archivo principal
         }
 
         window.onload = function() {
