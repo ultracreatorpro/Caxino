@@ -11,6 +11,18 @@
             color: white;
             margin: 0;
             padding: 0;
+         }
+         #splashScreen {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: black; /* Fondo negro */
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         z-index: 9999; /* Para asegurarte de que esté encima de todo */
         }
         header {
             background-color: #111;
@@ -124,6 +136,11 @@
 </head>
 <body>
 
+<!-- Pantalla de bienvenida -->
+    <div id="splashScreen">
+    <img src="https://i.ibb.co/VtyQPKm/IMG-20241015-032602-450.jpg" alt="Splash Screen" style="width: 100%; height: auto;">
+</div>
+
     <header>
         Casino Online
         <div class="header-info">
@@ -134,7 +151,7 @@
 
     <nav>
         <a href="#"('inicio.html')">Casino</a>
-        <a href="https://ultracreatorpro.github.io/depoxitocaxino" target="_blank">Depositar</a>
+        <a href="https://ultracreatorpro.github.io/depoxitocaxino/" target="_blank">Depositar</a>
         <a href="https://ultracreatorpro.github.io/retilocaxino" target="_blank">Retirar</a>
     </nav>
 
@@ -180,7 +197,7 @@
 
      <section class="game">
             <h2>Jewel crush</h2>
-            <img src="https://i.ibb.co/MBm7GYZ/20241014-092445.jpg" alt="Blackjack">
+            <img src="https://i.ibb.co/BCRDPww/IMG-20241012-214827-200.jpg" alt="Blackjack">
             <p>¡Intenta acumular la mayor cantidad de monedas!</p>
             <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/jewel-academy.html'">Probar</button>
             <button class="secondary-button" onclick="window.location.href='https://tu-enlace.com/probar-blackjack'">Apostar</button>
@@ -192,6 +209,11 @@
     </footer>
 
     <script>
+    // Ocultar el splash screen después de 2 segundos
+    setTimeout(() => {
+        document.getElementById('splashScreen').style.display = 'none';
+    }, 2000); // 2000 milisegundos = 2 segundos
+
         function navigate(page) {
             window.location.href = page;
         }
