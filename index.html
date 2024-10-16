@@ -301,17 +301,26 @@
         if (!hasReceivedBonus) {
             document.getElementById('modal').style.display = 'block';
         }
-    }
+   }
 
     document.getElementById('welcomeBonusButton').addEventListener('click', () => {
-        // Cambiar el balance a $0.50
-        document.getElementById('balance').textContent = '$0.50';
+        // Cambiar el balance a $0.50 y guardarlo en localStorage
+        const newBalance = 0.50;
+        document.getElementById('balance').textContent = `$${newBalance.toFixed(2)}`;
+        localStorage.setItem('balance', newBalance); // Guarda el nuevo saldo
         // Ocultar el modal
         document.getElementById('modal').style.display = 'none';
         // Marcar que el usuario ya recibió el bono
         localStorage.setItem('hasReceivedBonus', 'true');
     });
 
+    // Cargar el saldo desde localStorage al cargar la página
+    function loadBalance() {
+        const storedBalance = localStorage.getItem('balance');
+        if (storedBalance) {
+            document.getElementById('balance').textContent = `$${parseFloat(storedBalance).toFixed(2)}`;
+        }
+    }
     window.onload = function() {
         displayUserId();
         updateDepositNotifications();
