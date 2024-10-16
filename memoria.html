@@ -68,7 +68,7 @@
             margin-bottom: 10px;
         }
 
-        .restart-btn, .bet-btn {
+        .restart-btn, .bet-btn, .home-btn {
             color: white;
             padding: 10px 20px;
             border: none;
@@ -94,9 +94,19 @@
             background-color: #218838;
         }
 
+        .home-btn {
+            background-color: #FF6347;
+            width: 90%; /* Hacer el botón más ancho */
+        }
+
+        .home-btn:hover {
+            background-color: #FF4500;
+        }
+
         .btn-group {
             display: flex;
             gap: 10px;
+            flex-direction: column; /* Cambiar la dirección para que el nuevo botón quede debajo */
         }
     </style>
 </head>
@@ -115,6 +125,8 @@
         <div class="btn-group">
             <button class="restart-btn" id="restartBtn">Reiniciar</button>
             <button class="bet-btn" id="betBtn">Apostar</button>
+            <!-- Nuevo botón más ancho para redirigir a index.html -->
+            <button class="home-btn" id="homeBtn">Ir a Inicio</button>
         </div>
     </div>
 
@@ -134,12 +146,14 @@
         let timerElement = document.getElementById('timer');
         let restartBtn = document.getElementById('restartBtn');
         let betBtn = document.getElementById('betBtn');
+        let homeBtn = document.getElementById('homeBtn');
 
         let hasFlippedCard = false;
         let lockBoard = false;
         let firstCard, secondCard;
         let timeLeft = 60;
         let timerInterval;
+        let matchedCards = 0;
 
         function startGame() {
             resetBoard();
@@ -149,6 +163,7 @@
 
         function generateCards() {
             gameBoard.innerHTML = '';
+            matchedCards = 0; // Reiniciar el conteo de cartas emparejadas
             let cards = [...cardsArray, ...cardsArray];
             cards.sort(() => 0.5 - Math.random());
             cards.forEach((card) => {
@@ -182,6 +197,10 @@
         function checkForMatch() {
             if (firstCard.dataset.name === secondCard.dataset.name) {
                 disableCards();
+                matchedCards += 2; // Aumentar el conteo de cartas emparejadas
+                if (matchedCards === cardsArray.length * 2 && timeLeft > 0) {
+                    setTimeout(() => alert('¡Felicidades! Has terminado el juego a tiempo.'), 500);
+                }
             } else {
                 unflipCards();
             }
@@ -244,8 +263,11 @@
 
         restartBtn.addEventListener('click', startGame);
         betBtn.addEventListener('click', () => {
-    window.location.href = 'depositar.html';  // Redirige a la página interna
-            // Aquí podrás agregar la lógica para dirigir a otra sección
+            window.location.href = 'depositar.html';  // Redirige a la página interna
+        });
+
+        homeBtn.addEventListener('click', () => {
+            window.location.href = 'index.html';  // Redirige a la página de inicio
         });
 
         startGame();
