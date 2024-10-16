@@ -319,6 +319,9 @@
         const storedBalance = localStorage.getItem('balance');
         if (storedBalance) {
             document.getElementById('balance').textContent = `$${parseFloat(storedBalance).toFixed(2)}`;
+        } else {
+            // Si no hay saldo guardado, establece el saldo en 0.00
+            document.getElementById('balance').textContent = '$0.00';
         }
     }
     window.onload = function() {
