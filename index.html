@@ -11,18 +11,18 @@
             color: white;
             margin: 0;
             padding: 0;
-         }
-         #splashScreen {
-         position: fixed;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         background-color: black; /* Fondo negro */
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         z-index: 9999; /* Para asegurarte de que esté encima de todo */
+        }
+        #splashScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
         header {
             background-color: #111;
@@ -31,7 +31,7 @@
             font-size: 26px;
             font-weight: bold;
             color: #ffd700;
-         }
+        }
         .header-info {
             font-size: 14px;
             color: white;
@@ -121,87 +121,92 @@
             font-size: 16px;
             color: #fcfcfc;
         }
-        /* Estilos para el contenedor de mensajes de depósito */
-        #deposit-notifications {
-            background-color: #444;
-            padding: 5px;
-            border-radius: 20px;
-            margin: 20px 0;
+        #modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 15px;
+            z-index: 10000;
             text-align: center;
-            font-size: 14px;
-            color: #ffd700;
-            font-weight: bold;
+        }
+        #modal img {
+            width: 100px; /* Tamaño de la imagen del modal */
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
 
 <!-- Pantalla de bienvenida -->
-    <div id="splashScreen">
+<div id="splashScreen">
     <img src="https://i.ibb.co/QpGc62X/20241015-221512-0000.png" alt="Splash Screen" style="width: 100%; height: auto;">
 </div>
 
-    <header>
-       🔸️ Casino Online 🔸️
-        <div class="header-info">
-            <div id="userId"></div>
-            <div id="balance">$0.00</div>
-        </div>
-    </header>
+<header>
+    🔸️ Casino Online 🔸️
+    <div class="header-info">
+        <div id="userId"></div>
+        <div id="balance">$0.00</div>
+    </div>
+</header>
 
-    <nav>
-        <a href="index.html">Casino</a>
-        <a href="depositar.html">Depositar</a>
-        <a href="retirar.html">Retirar</a>
-    </nav>
+<nav>
+    <a href="index.html">Casino</a>
+    <a href="depositar.html">Depositar</a>
+    <a href="retirar.html">Retirar</a>
+</nav>
 
-    <!-- Contenedor de notificaciones de depósito -->
-    <div id="deposit-notifications">
-        Usuario gw1k***** acaba de depositar $20
+<!-- Contenedor de notificaciones de depósito -->
+<div id="deposit-notifications">
+    Usuario gw1k***** acaba de depositar $20
+</div>
+
+<section class="game">
+    <h2>Desafios</h2>
+    <img src="https://assets.funnygames.org/9/114579/100326/1200x630/las-vegas-blackjack.webp" alt="Blackjack">
+    <p>¡Compite en juegos aleatorios contra la casa!</p>
+    <button class="primary-button" onclick="navigate('memoria.html')">Probar</button>
+    <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
+</section>
+
+<section class="game">
+    <h2>Domino</h2>
+    <img src="https://i.ibb.co/JcLg4Gw/IMG-20241014-021344-846.jpg" alt="Ruleta">
+    <p>¡Prueba tu suerte con estrategias e inteligencia!</p>
+    <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/domino-battle.html'">Probar</button>
+    <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
+</section>
+
+<section class="game">
+    <h2>Expert Goalkeeper</h2>
+    <img src="https://s.cafebazaar.ir/images/upload/screenshot/expert.goalkeeper-3138756c-7354-48e5-a891-ea2b8d73a824.jpeg?x-img=v1/resize,h_600,lossless_false/optimize" alt="Blackjack">
+    <p>¡Detén cuantos balones seas capaz!</p>
+    <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/goalkeeperchallenge.html'">Probar</button>
+    <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
+</section>
     </div>
 
-        <section class="game">
-            <h2>Desafios</h2>
-            <img src="https://assets.funnygames.org/9/114579/100326/1200x630/las-vegas-blackjack.webp" alt="Blackjack">
-            <p>¡Compite en juegos aleatorios contra la casa!</p>
-            <button class="primary-button" onclick="navigate('memoria.html')">Probar</button>
-            <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
-        </section>
+<section class="game">
+    <h2>Busca minas</h2>
+    <img src="https://i.ibb.co/NrGm8vX/IMG-20241014-014454-023.jpg" alt="Blackjack">
+    <p>¡Camina con cuidado para no explotar con una mina!</p>
+    <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/buscaminas.html'">Probar</button>
+    <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
+</section>
     </div>
 
-        <section class="game">
-            <h2>Domino</h2>
-            <img src="https://i.ibb.co/JcLg4Gw/IMG-20241014-021344-846.jpg" alt="Ruleta">
-            <p>¡Prueba tu suerte con estrategias e inteligencia!</p>
-            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/domino-battle.html'">Probar</button>
-            <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
-        </section>
-
-        <section class="game">
-            <h2>Expert Goalkeeper</h2>
-            <img src="https://s.cafebazaar.ir/images/upload/screenshot/expert.goalkeeper-3138756c-7354-48e5-a891-ea2b8d73a824.jpeg?x-img=v1/resize,h_600,lossless_false/optimize" alt="Blackjack">
-            <p>¡Detén cuantos balones seas capaz!</p>
-            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/goalkeeperchallenge.html'">Probar</button>
-            <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
-        </section>
-    </div>
-
-        <section class="game">
-            <h2>Busca minas</h2>
-            <img src="https://i.ibb.co/NrGm8vX/IMG-20241014-014454-023.jpg" alt="Blackjack">
-            <p>¡Camina con cuidado para no explotar con una mina!</p>
-            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/buscaminas.html'">Probar</button>
-            <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
-        </section>
-    </div>
-
-     <section class="game">
-            <h2>Jewel crush</h2>
-            <img src="https://i.ibb.co/bvJH5CT/Dise-o-sin-t-tulo-20241016-022446-0000.png" alt="Blackjack">
-            <p>¡Intenta acumular la mayor cantidad de monedas!</p>
-            <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/jewel-academy.html'">Probar</button>
-            <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
-        </section>
+<section class="game">
+    <h2>Jewel crush</h2>
+    <img src="https://i.ibb.co/bvJH5CT/Dise-o-sin-t-tulo-20241016-022446-0000.png" alt="Blackjack">
+    <p>¡Intenta acumular la mayor cantidad de monedas!</p>
+    <button class="primary-button" onclick="window.location.href='https://www.juegosdiarios.com/juegosmobile/jewel-academy.html'">Probar</button>
+    <button class="secondary-button" onclick="navigate('depositar.html')">Apostar</button>
+</section>
     </div>
 
     <!-- Separador con línea y círculo -->
@@ -215,70 +220,94 @@
     
     <p>¡Somos un equipo de desarrolladores especialistas en la creación de minijuegos y decidimos crear un Casino online para los amantes de las apuestas y de esa forma divertirnos y al mismo tiempo vivir todos de las apuestas!</p>
 
-    <footer>
-        © 2024 Casino Online. Todos los derechos reservados.
-    </footer>
+<footer>
+    © 2024 Casino Online. Todos los derechos reservados.
+</footer>
 
-    <script>
+<!-- Modal de bono de bienvenida -->
+<div id="modal">
+    <img src="https://cdn-icons-png.flaticon.com/128/536/536089.png" alt="Bono de Bienvenida"> <!-- Cambia la URL de la imagen según sea necesario -->
+    <p>¡Bienvenido a nuestro Casino!</p>
+    <button class="primary-button" id="welcomeBonusButton">Reclamar bono</button>
+</div>
+
+<script>
     // Ocultar el splash screen después de 2 segundos
     setTimeout(() => {
         document.getElementById('splashScreen').style.display = 'none';
     }, 2000); // 2000 milisegundos = 2 segundos
 
-        function navigate(page) {
-            window.location.href = page;
+    function navigate(page) {
+        window.location.href = page;
+    }
+
+    function generateUserId() {
+        const userId = 'user-' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('userId', userId);
+        return userId;
+    }
+
+    function displayUserId() {
+        const storedUserId = localStorage.getItem('userId');
+        const userIdDisplay = document.getElementById('userId');
+        userIdDisplay.textContent = storedUserId ? `ID: ${storedUserId}` : `ID: ${generateUserId()}`;
+    }
+
+    // Función para actualizar los mensajes de depósito cada 2 segundos
+    function updateDepositNotifications() {
+        const messages = [
+            'Usuario j4f3***** acaba de depositar $20',
+            'Usuario xeu4***** acaba de retirar $55',
+            'Usuario c6kd***** acaba de depositar $38',
+            'Usuario mkd4***** acaba de depositar $100',
+            'Usuario vda8***** acaba de retirar $80',
+            'Usuario k6p9***** acaba de depositar $225',
+            'Usuario v2mB***** acaba de retirar $18',
+            'Usuario s9ñ3***** acaba de depositar $50',
+            'Usuario l4e8***** acaba de depositar $35',
+            'Usuario j5b7***** acaba de retirar $15',
+            'Usuario a061***** acaba de depositar $40',
+            'Usuario g6s7***** acaba de retirar $250',
+            'Usuario c7w4***** acaba de depositar $100',
+            'Usuario 6jt5***** acaba de depositar $70',
+            'Usuario a0p2***** acaba de retirar $35',
+            'Usuario u2s3***** acaba de depositar $110',
+            'Usuario i4h4***** acaba de retirar $10',
+            'Usuario 8dr7***** acaba de depositar $240',
+            // Agrega más mensajes si es necesario
+        ];
+        let messageIndex = 0;
+        const notificationElement = document.getElementById('deposit-notifications');
+
+        setInterval(() => {
+            notificationElement.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length; // Cicla los mensajes
+        }, 2000); // Cambia cada 2 segundos
+    }
+
+    function showWelcomeBonusModal() {
+        const hasReceivedBonus = localStorage.getItem('hasReceivedBonus');
+        if (!hasReceivedBonus) {
+            document.getElementById('modal').style.display = 'block';
         }
+    }
 
-        function generateUserId() {
-            const userId = 'user-' + Math.random().toString(36).substr(2, 9);
-            localStorage.setItem('userId', userId);
-            return userId;
-        }
+    document.getElementById('welcomeBonusButton').addEventListener('click', () => {
+        // Cambiar el balance a $0.50
+        document.getElementById('balance').textContent = '$0.50';
+        // Ocultar el modal
+        document.getElementById('modal').style.display = 'none';
+        // Marcar que el usuario ya recibió el bono
+        localStorage.setItem('hasReceivedBonus', 'true');
+    });
 
-        function displayUserId() {
-            const storedUserId = localStorage.getItem('userId');
-            const userIdDisplay = document.getElementById('userId');
-            userIdDisplay.textContent = storedUserId ? `ID: ${storedUserId}` : `ID: ${generateUserId()}`;
-        }
-
-        // Función para actualizar los mensajes de depósito cada 2 segundos
-        function updateDepositNotifications() {
-            const messages = [
-                'Usuario j4f3***** acaba de depositar $20',
-                'Usuario xeu4***** acaba de retirar $55',
-                'Usuario c6kd***** acaba de depositar $38',
-                'Usuario mkd4***** acaba de depositar $100',
-                'Usuario vda8***** acaba de retirar $80',
-                'Usuario k6p9***** acaba de depositar $225',
-                'Usuario v2mB***** acaba de retirar $18',
-                'Usuario s9ñ3***** acaba de depositar $50',
-                'Usuario l4e8***** acaba de depositar $35',
-                'Usuario j5b7***** acaba de retirar $15',
-                'Usuario a061***** acaba de depositar $40',
-                'Usuario g6s7***** acaba de retirar $250',
-                'Usuario c7w4***** acaba de depositar $100',
-                'Usuario 6jt5***** acaba de depositar $70',
-                'Usuario a0p2***** acaba de retirar $35',
-                'Usuario u2s3***** acaba de depositar $110',
-                'Usuario i4h4***** acaba de retirar $10',
-                'Usuario 8dr7***** acaba de depositar $240',
-
-                // Agrega más mensajes si es necesario
-            ];
-            let messageIndex = 0;
-            const notificationElement = document.getElementById('deposit-notifications');
-
-            setInterval(() => {
-                notificationElement.textContent = messages[messageIndex];
-                messageIndex = (messageIndex + 1) % messages.length; // Cicla los mensajes
-            }, 2000); // Cambia cada 2 segundos
-        }
-
-        window.onload = function() {
-            displayUserId();
-            updateDepositNotifications();
-        };
-    </script>
+    window.onload = function() {
+        displayUserId();
+        updateDepositNotifications();
+        // Mostrar el modal después de 15 segundos
+        setTimeout(showWelcomeBonusModal, 15000); // 15000 milisegundos = 15 segundos
+    };
+</script>
 
 </body>
 </html>
