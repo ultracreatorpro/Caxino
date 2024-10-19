@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e2d;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+
+        /* Estilos de la cabecera */
+        .header {
+            background-color: #ff4d4d;
+            color: #fff;
+            width: 90%;
+            padding: 20px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        /* Balance justo debajo de la cabecera */
+        .balance {
+            margin-top: 90px;
+            font-size: 22px;
+            color: #fff;
+            text-align: right;
+            width: 100%;
+            padding-right: 20px;
+        }
+
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        .player, .computer {
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        .choice-image {
+            width: 120px;
+            height: 120px;
+            margin: 10px 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Estilos de los botones */
+        .button {
+            padding: 15px 25px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        .button.piedra {
+            background-color: #4caf50; /* Verde */
+        }
+
+        .button.papel {
+            background-color: #2196f3; /* Azul */
+        }
+
+        .button.tijera {
+            background-color: #ff9800; /* Naranja */
+        }
+
+        /* Botón de depositar */
+        .button.depositar {
+            background-color: #ff5733; /* Rojo */
+            margin-top: 20px;
+            width: 150px;
+        }
+
+        /* Pop-up personalizado */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            border: 2px solid #ffc107;
+            border-radius: 25px;
+            z-index: 100;
+            text-align: center;
+        }
+
+        .popup-text {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        /* Transiciones para hacer que el juego se vea más dinámico */
+        img.choice-image {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        img.choice-image:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabecera Roja -->
+    <div class="header">
+      Piedra, Papel o Tijera
+    </div>
+
+    <!-- Balance justo debajo de la cabecera -->
+    <div class="balance">
+        💰 Monedas: <span id="points">0</span>
+    </div>
+
+    <div class="game-container">
+        <div class="player">
+            <h2>Tu elección</h2>
+            <img id="playerChoice" class="choice-image" src="" alt="">
+        </div>
+        <div class="computer">
+            <h2>La computadora</h2>
+            <img id="computerChoice" class="choice-image" src="" alt="">
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="button piedra" onclick="play('piedra')">Piedra</button>
+        <button class="button papel" onclick="play('papel')">Papel</button>
+        <button class="button tijera" onclick="play('tijera')">Tijera</button>
+    </div>
+
+    <!-- Botón para depositar -->
+    <button class="button depositar" onclick="window.location.href='depositar.html'">Depositar</button>
+
+    <!-- Pop-up que aparecerá cuando ganes o pierdas -->
+    <div id="popup">
+        <div class="popup-text" id="popupText"></div>
+    </div>
+
+    <script>
+        let points = localStorage.getItem('points') ? parseInt(localStorage.getItem('points')) : 60;
+        const pointsElement = document.getElementById('points');
+        pointsElement.innerText = points;
+
+        const choices = {
+            piedra: 'https://cdn-icons-png.flaticon.com/512/10918/10918669.png',   // Cambia la URL a la de tu imagen de piedra
+            papel: 'https://cdn-icons-png.flaticon.com/512/2165/2165920.png',    // Cambia la URL a la de tu imagen de papel
+            tijera: 'https://cdn-icons-png.flaticon.com/128/2907/2907054.png'   // Cambia la URL a la de tu imagen de tijera
+        };
+
+        // Actualiza localmente el balance de monedas
+        function updatePoints(newPoints) {
+            points = newPoints;
+            pointsElement.innerText = points;
+            localStorage.setItem('points', points);
+
+            // Desactiva botones si el balance es 0
+            if (points <= 0) {
+                disableGameButtons(true);
+            }
+        }
+
+        function play(userChoice) {
+            if (points <= 0) return; // No jugar si el balance es 0
+
+            const computerChoice = ['piedra', 'papel', 'tijera'][Math.floor(Math.random() * 3)];
+            
+            document.getElementById('playerChoice').src = choices[userChoice];
+            document.getElementById('computerChoice').src = choices[computerChoice];
+
+            let resultMessage = '';
+            
+            if (userChoice === computerChoice) {
+                resultMessage = "¡Empate!";
+            } else if (
+                (userChoice === 'piedra' && computerChoice === 'tijera') ||
+                (userChoice === 'papel' && computerChoice === 'piedra') ||
+                (userChoice === 'tijera' && computerChoice === 'papel')
+            ) {
+                updatePoints(points + 20);
+                resultMessage = `¡Ganaste!`;
+            } else {
+                updatePoints(points - 20);
+                resultMessage = `¡Perdiste!`;
+            }
+            
+            showPopup(resultMessage);
+        }
+
+        function showPopup(message) {
+            const popup = document.getElementById('popup');
+            const popupText = document.getElementById('popupText');
+            popupText.innerText = message;
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 2000);
+        }
+
+        function disableGameButtons(disable) {
+            document.querySelectorAll('.button.piedra, .button.papel, .button.tijera').forEach(button => {
+                button.disabled = disable;
+                button.style.opacity = disable ? 0.5 : 1;
+                button.style.cursor = disable ? 'not-allowed' : 'pointer';
+            });
+        }
+
+        // Desactiva los botones si el balance es 0 al cargar la página
+        if (points <= 0) {
+            disableGameButtons(true);
+        }
+    </script>
+</body>
+</html>
