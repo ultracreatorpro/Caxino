@@ -31,6 +31,16 @@
             top: 0;
             left: 0;
             z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Estilos del ícono de ayuda */
+        .help-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
         }
 
         /* Balance justo debajo de la cabecera */
@@ -139,6 +149,8 @@
     <!-- Cabecera Roja -->
     <div class="header">
       Piedra, Papel o Tijera
+      <!-- Ícono de ayuda -->
+      <img id="helpIcon" class="help-icon" src="https://cdn-icons-png.flaticon.com/512/3409/3409564.png" alt="Ayuda" onclick="showHelpPopup()">
     </div>
 
     <!-- Balance justo debajo de la cabecera -->
@@ -171,8 +183,17 @@
         <div class="popup-text" id="popupText"></div>
     </div>
 
+    <!-- Ventana emergente de ayuda -->
+    <div id="helpPopup" style="display: none;">
+        <div style="background-color: #444; padding: 20px; border-radius: 10px; width: 80%; text-align: center; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; color: #fff;">
+            <h3>¿Cómo jugar?</h3>
+            <p>Selecciona tocando un botón entre Piedra, Papel o Tijera y la computadora será tu contrincante. Tienes 60 monedas gratis pero si deseas ganar dinero presiona el botón: Depositar.</p>
+            <button onclick="closeHelpPopup()" style="background-color: #ff4d4d; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Cerrar</button>
+        </div>
+    </div>
+
     <script>
-        let points = localStorage.getItem('points') ? parseInt(localStorage.getItem('points')) : 60;
+        let points = localStorage.getItem('points') ? parseInt(localStorage.getItem('points')) : 100;
         const pointsElement = document.getElementById('points');
         pointsElement.innerText = points;
 
@@ -232,16 +253,21 @@
         }
 
         function disableGameButtons(disable) {
-            document.querySelectorAll('.button.piedra, .button.papel, .button.tijera').forEach(button => {
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach(button => {
                 button.disabled = disable;
-                button.style.opacity = disable ? 0.5 : 1;
-                button.style.cursor = disable ? 'not-allowed' : 'pointer';
+                button.style.opacity = disable ? '0.5' : '1';
             });
         }
 
-        // Desactiva los botones si el balance es 0 al cargar la página
-        if (points <= 0) {
-            disableGameButtons(true);
+        // Mostrar ventana emergente de ayuda
+        function showHelpPopup() {
+            document.getElementById('helpPopup').style.display = 'block';
+        }
+
+        // Cerrar ventana emergente de ayuda
+        function closeHelpPopup() {
+            document.getElementById('helpPopup').style.display = 'none';
         }
     </script>
 </body>
